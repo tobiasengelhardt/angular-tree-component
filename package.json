@@ -1,6 +1,6 @@
 {
   "name": "tengelhardt-angular-tree-component",
-  "version": "8.5.7",
+  "version": "9.0.0",
   "description": "A simple yet powerful tree component for Angular2",
   "author": "Adam Klein <adam@500tech.com>",
   "homepage": "https://github.com/500tech/angular-tree-component",
@@ -41,7 +41,7 @@
     "rollup": "./node_modules/.bin/rollup -c rollup.config.js dist/angular-tree-component.js -o dist/angular-tree-component.umd.js",
     "build": "npm run lint && npm run clean:typescript && .\\node_modules\\.bin\\ngc && npm run rollup && copy lib\\angular-tree-component.css dist",
     "example:cli": "./node_modules/.bin/ngc && cp lib/angular-tree-component.css dist && cd example/cli && npm install && cp -rf ../../dist node_modules/angular-tree-component/ && ./node_modules/.bin/ng serve",
-    "example:cli:win": ".\\node_modules\\.bin\\ngc && cd example\\cli && npm install && npm install ..\\..\\ && .\\node_modules\\.bin\\ng serve",
+    "example:cli:win": ".\\node_modules\\.bin\\ngc && cd example\\cli9 && npm install && npm install ..\\..\\ && .\\node_modules\\.bin\\ng serve",
     "selupdate": "webdriver-manager update",
     "selenium": "webdriver-manager update && webdriver-manager start",
     "example:cli:build": "npm run build && cd example/cli && npm install && cp -rf ../../dist node_modules/angular-tree-component/ && cp src/index.build.html src/index.html && ./node_modules/.bin/ng build --aot && cp src/index.dev.html src/index.html && mkdir -p 500tech/angular-tree-component/master/example/cli/ && cp -rf dist 500tech/angular-tree-component/master/example/cli/",
@@ -69,15 +69,15 @@
     "mobx": "^4.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/core": "^8.1.0",
-    "@angular/cli": "^8.1.1",
-    "@angular/common": "^8.1.0",
-    "@angular/compiler": "^8.1.0",
-    "@angular/compiler-cli": "^8.1.0",
-    "@angular/core": "^8.1.0",
-    "@angular/platform-browser": "^8.1.0",
-    "@angular/platform-browser-dynamic": "^8.1.0",
-    "@angular/platform-server": "^8.1.0",
+    "@angular-devkit/core": "^9.1.1",
+    "@angular/cli": "^9.1.1",
+    "@angular/common": "^9.1.1",
+    "@angular/compiler": "^9.1.1",
+    "@angular/compiler-cli": "^9.1.1",
+    "@angular/core": "^9.1.1",
+    "@angular/platform-browser": "^9.1.1",
+    "@angular/platform-browser-dynamic": "^9.1.1",
+    "@angular/platform-server": "^9.1.1",
     "@types/jasmine": "2.5.38",
     "@types/lodash": "^4.14.62",
     "@types/node": "^6.0.38",
@@ -102,20 +102,20 @@
     "rollup-plugin-commonjs": "7.0.2",
     "rollup-plugin-node-resolve": "2.0.0",
     "rollup-plugin-uglify": "1.0.1",
-    "rxjs": "^6.2.2",
+    "rxjs": "^6.5.5",
     "testcafe": "^1.0.1",
     "testcafe-browser-provider-saucelabs": "^1.6.1",
     "tslint": "4.4.2",
     "typedoc": "^0.3.12",
-    "typescript": "~3.5.3",
-    "zone.js": "^0.9.1"
+    "typescript": "~3.8.3",
+    "zone.js": "^0.10.3"
   },
   "repository": "https://github.com/tobiasengelhardt/angular-tree-component.git",
   "bugs": {
     "url": "https://github.com/500tech/angular-tree-component/issues"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.0.0"
   },
   "collective": {
     "type": "opencollective",
