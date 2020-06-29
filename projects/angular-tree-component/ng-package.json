@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/angular-tree-component",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "mobx": "mobx",
+      "lodash/defaultsDeep": "defaultsDeep",
+      "lodash/get": "get",
+      "lodash/omit": "omit",
+      "lodash/isNumber": "isNumber",
+      "lodash/first": "first"
+    }
+  }
+}
