@@ -385,7 +385,7 @@ export class TreeModel implements ITreeModel, OnDestroy {
     } else if (isFunction(filter)) {
       filterFn = filter;
     } else {
-      console.error("Don't know what to do with filter", filter);
+      console.error('Don\'t know what to do with filter', filter);
       console.error('Should be either a string or function');
       return;
     }

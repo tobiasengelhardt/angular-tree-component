@@ -5,10 +5,6 @@
   "author": "Adam Klein <adam@500tech.com>",
   "homepage": "https://github.com/500tech/angular-tree-component",
   "license": "MIT",
-  "main": "dist/angular-tree-component.umd.js",
-  "js:next": "dist/angular-tree-component.js",
-  "module": "dist/angular-tree-component.js",
-  "types": "dist/angular-tree-component.d.ts",
   "keywords": [
     "ng",
     "angular",
@@ -34,13 +30,24 @@
     "angular2 tree component"
   ],
   "scripts": {
+    "build:lib": "npm run lint:lib && npm run clean:typescript && ng build angular-tree-component",
+    "start:example-app": "ng serve",
+    "start:lib": "ng build angular-tree-component --watch",
+    "lint:lib": "ng lint angular-tree-component",
+    "publish:release": "npm publish ./dist/angular-tree-component",
+    "publish:next": "npm publish ./dist/angular-tree-component --tag next",
+    "clean:dist": "rimraf dist",
+    "clean:build:lib": "npm run clean:dist && npm run build:lib",
+    "test:lib": "testcafe chrome e2e/*.testcafe.js --app \"ng serve\" -r xunit:/tmp/test-results/res.xml -c 4 --assertion-timeout 10000 --app-init-delay 20000 --page-load-timeout 10000 --selector-timeout 20000",
+    "test:lib:ci": "testcafe chrome:headless e2e/*.testcafe.js --app \"ng serve\" -r xunit:/tmp/test-results/res.xml -c 4 --assertion-timeout 10000 --app-init-delay 20000 --page-load-timeout 10000 --selector-timeout 20000",
+    "doc:lib": "typedoc --module commonjs --out doc projects/angular-tree-component/src/lib/defs/api.ts",
+
     "doc": "typedoc --module commonjs --out doc lib/defs/api.ts",
     "clean": "npm run clean:typescript && rimraf node_modules && npm cache clean",
     "clean:typescript": "rimraf dist",
     "lint": "tslint lib/**/*.ts",
     "rollup": "./node_modules/.bin/rollup -c rollup.config.js dist/angular-tree-component.js -o dist/angular-tree-component.umd.js",
     "build": "npm run lint && npm run clean:typescript && ./node_modules/.bin/ngc && npm run rollup && cp projects/angular-tree-component/src/lib/angular-tree-component.css dist/angular-tree-component/lib",
-    "build:new": "npm run lint && npm run clean:typescript && ng build",
     "example:cli": "./node_modules/.bin/ngc && cp lib/angular-tree-component.css dist && cd example/cli && npm install && cp -rf ../../dist node_modules/angular-tree-component/ && ./node_modules/.bin/ng serve",
     "example:cli:win": ".\\node_modules\\.bin\\ngc && cd example\\cli && npm install && npm install ..\\..\\ && .\\node_modules\\.bin\\ng serve",
     "selupdate": "webdriver-manager update",
@@ -53,9 +60,7 @@
     "test:slow": "./node_modules/.bin/testcafe chrome e2e/*.testcafe.js --speed 0.1",
     "test:setup": "npm run build && cd example/cli && npm install && cp -rf ../../dist node_modules/angular-tree-component/",
     "prepublishOnly": "cd example/cli && npm install && cd ../../ && npm run build",
-    "e2e:tsc": "../node_modules/.bin/tsc --p e2e/tsconfig.json",
-    "publish:release": "npm publish ./dist/angular-tree-component",
-    "publish:next": "npm publish ./dist/angular-tree-component --tag next"
+    "e2e:tsc": "../node_modules/.bin/tsc --p e2e/tsconfig.json"
   },
   "files": [
     "dist/"
@@ -64,10 +69,8 @@
   "contributors": [
     "Adam Klein <adam@500tech.com>"
   ],
-  "peerDependencies": {
-    "core-js": "^2.4.1"
-  },
   "dependencies": {
+    "core-js": "^2.5.4",
     "lodash": "^4.17.11",
     "mobx": "^4.15.1",
     "tslib": "^1.10.0"
@@ -82,6 +85,7 @@
     "@angular/compiler-cli": "^9.0.0",
     "@angular/core": "^9.0.0",
     "@angular/forms": "^9.0.0",
+    "@angular/router": "^9.0.0",
     "@angular/platform-browser": "^9.0.0",
     "@angular/platform-browser-dynamic": "^9.0.0",
     "@angular/platform-server": "^9.0.0",
@@ -153,9 +157,7 @@
   "husky": {
     "hooks": {
       "post-commit": "git reset",
-      "pre-commit": [
-        "lint-staged"
-      ]
+      "pre-commit": "lint-staged"
     }
   }
 }

@@ -10,10 +10,11 @@ import {
   ViewChild
 } from '@angular/core';
 import { TreeModel } from '../models/tree.model';
+import { ITreeOptions } from '../defs/api';
 import { TreeDraggedElement } from '../models/tree-dragged-element.model';
 import { TreeOptions } from '../models/tree-options.model';
-import { TreeViewportComponent } from './tree-viewport.component';
 
+import { TreeViewportComponent } from './tree-viewport.component';
 import includes from 'lodash/includes';
 import pick from 'lodash/pick';
 
@@ -70,7 +71,7 @@ export class TreeComponent implements OnChanges {
   // Will be handled in ngOnChanges
   @Input() set nodes(nodes: any[]) {}
 
-  @Input() set options(options: TreeOptions) {}
+  @Input() set options(options: ITreeOptions) {}
 
   @Input() set focused(value: boolean) {
     this.treeModel.setFocus(value);

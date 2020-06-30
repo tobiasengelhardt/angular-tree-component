@@ -10,8 +10,20 @@
       "lodash/get": "get",
       "lodash/omit": "omit",
       "lodash/isNumber": "isNumber",
-      "lodash/first": "first"
+      "lodash/first": "first",
+      "lodash/last": "last",
+      "lodash/some": "some",
+      "lodash/every": "every",
+      "lodash/compact": "compact",
+      "lodash/find": "find",
+      "lodash/isString": "isString",
+      "lodash/isFunction": "isFunction",
+      "lodash/throttle": "throttle",
+      "lodash/includes": "includes",
+      "lodash/pick": "pick"
     }
   },
-  "whitelistedNonPeerDependencies": ["lodash"]
+  "whitelistedNonPeerDependencies": [
+    "lodash"
+  ]
 }
