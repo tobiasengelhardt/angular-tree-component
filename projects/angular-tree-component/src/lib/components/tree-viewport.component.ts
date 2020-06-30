@@ -1,7 +1,6 @@
 import {
   Component,
   ElementRef,
-  ViewEncapsulation,
   AfterViewInit,
   OnInit,
   OnDestroy,
@@ -9,8 +8,7 @@ import {
 } from '@angular/core';
 import { TreeVirtualScroll } from '../models/tree-virtual-scroll.model';
 import { TREE_EVENTS } from '../constants/events';
-import { Cancelable } from 'lodash';
-import throttle from 'lodash/throttle';
+import { throttle } from 'lodash-es';
 
 @Component({
   // tslint:disable-next-line:component-selector
