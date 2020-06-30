@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "module": "es2015",
     "moduleResolution": "node",
     "target": "es5",
@@ -20,9 +20,5 @@
     }
   },
   "compileOnSave": false,
-  "buildOnSave": false,
-  "angularCompilerOptions": {
-    "skipTemplateCodegen": true,
-    "enableIvy": false
-  }
+  "buildOnSave": false
 }
