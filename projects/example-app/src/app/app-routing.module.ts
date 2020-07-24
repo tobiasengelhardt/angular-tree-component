@@ -19,6 +19,7 @@ import { ScrollContainerComponent } from './scrollcontainer/scrollcontainer.comp
 import { ContextmenuComponent } from './contextmenu/contextmenu.component';
 import { DragOverStylingComponent } from './dragover-styling/dragover-styling.component';
 import { DragOverStylingFullTreeComponent } from './dragover-styling/dragover-styling-full-tree.component';
+import { LoadMoreComponent } from './load-more/load-more.component';
 
 const routes: Routes = [
   {
@@ -92,6 +93,10 @@ const routes: Routes = [
   {
     path: 'context-menu',
     component: ContextmenuComponent
+  },
+  {
+    path: 'load-more',
+    component: LoadMoreComponent
   }
 ];
 
