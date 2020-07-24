@@ -5,6 +5,7 @@ import { ITreeNode } from '../defs/api';
 import { TREE_EVENTS } from '../constants/events';
 
 import { first, last, some, every } from 'lodash-es';
+import { take } from 'rxjs/operators';
 
 export class TreeNode implements ITreeNode {
   private handler: IReactionDisposer;
@@ -198,9 +199,39 @@ export class TreeNode implements ITreeNode {
 
   // helper methods:
   loadNodeChildren() {
-    if (!this.options.getChildren) {
-      return Promise.resolve(); // Not getChildren method - for using redux
+    if (this.options.getChildren) {
+      return this.getChildrenByPromise();
     }
+    if (this.options.getChildren$) {
+      return this.getChildrenByObservable();
+    }
+    return Promise.resolve(); // Not getChildren method - for using redux
+  }
+
+  getChildrenByObservable() {
+    return this.options.getChildren$(this)
+      .pipe(take(1))
+      .subscribe(children => {
+        if (children) {
+          this.setField('children', children);
+          this._initChildren();
+          if (this.options.useTriState && this.treeModel.isSelected(this)) {
+            this.setIsSelected(true);
+          }
+          this.children.forEach((child) => {
+            if (child.getField('isExpanded') && child.hasChildren) {
+              child.expand();
+            }
+          });
+        }
+        this.fireEvent({
+          eventName: TREE_EVENTS.loadNodeChildren,
+          node: this
+        });
+      });
+  }
+
+  getChildrenByPromise(): Promise<any> {
     return Promise.resolve(this.options.getChildren(this))
       .then((children) => {
         if (children) {
@@ -214,7 +245,7 @@ export class TreeNode implements ITreeNode {
               child.expand();
             }
           });
-      }}).then(() => {
+        }}).then(() => {
         this.fireEvent({
           eventName: TREE_EVENTS.loadNodeChildren,
           node: this

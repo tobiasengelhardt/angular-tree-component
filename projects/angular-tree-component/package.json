@@ -1,5 +1,5 @@
 {
-  "name": "@circlon/angular-tree-component",
+  "name": "tengelhardt-angular-tree-component",
   "author": "Circlon Group <os-group@circlon.de>",
   "homepage": "https://github.com/CirclonGroup/angular-tree-component",
   "description": "A simple yet powerful tree component for Angular",
@@ -36,7 +36,8 @@
   ],
   "peerDependencies": {
     "@angular/common": ">=10.0.0 <11.0.0",
-    "@angular/core": ">=10.0.0 <11.0.0"
+    "@angular/core": ">=10.0.0 <11.0.0",
+    "rxjs": ">= 6.0.0"
   },
   "dependencies": {
     "lodash-es": "^4.17.15",

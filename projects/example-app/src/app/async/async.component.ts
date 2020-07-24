@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ITreeOptions, TreeNode} from 'angular-tree-component';
+import { of } from 'rxjs/internal/observable/of';
 
 @Component({
   selector: 'app-async',
@@ -10,7 +11,11 @@ import { ITreeOptions, TreeNode} from 'angular-tree-component';
 })
 export class AsyncTreeComponent {
   options: ITreeOptions = {
-    getChildren: this.getChildren.bind(this),
+    // getChildren: this.getChildren.bind(this),
+    getChildren$: node => {
+      const newNodes = this.asyncChildren.map((c) => Object.assign({}, c));
+      return of(newNodes);
+    },
     useCheckbox: true
   };
 
@@ -41,6 +46,12 @@ export class AsyncTreeComponent {
         name: 'root3'
       }
     ];
+  }
+
+  getChildren$() {
+    const newNodes = this.asyncChildren.map((c) => Object.assign({}, c));
+
+    return of(newNodes);
   }
 
   getChildren(node: any) {

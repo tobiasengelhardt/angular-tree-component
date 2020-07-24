@@ -83,6 +83,7 @@ export class TreeOptions {
   get idField(): string { return this.options.idField || 'id'; }
   get isExpandedField(): string { return this.options.isExpandedField || 'isExpanded'; }
   get getChildren(): any { return this.options.getChildren; }
+  get getChildren$(): any { return this.options.getChildren$; }
   get levelPadding(): number { return this.options.levelPadding || 0; }
   get useVirtualScroll(): boolean { return this.options.useVirtualScroll; }
   get animateExpand(): boolean { return this.options.animateExpand; }

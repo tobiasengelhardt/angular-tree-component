@@ -106,6 +106,7 @@ export interface ITreeOptions {
       ```
     */
    getChildren?: (node: TreeNode) => any;
+   getChildren$?: (node: TreeNode) => any;
    /**
     * Rewire which trigger causes which action using this attribute, or create custom actions / event bindings.
     * See the [Action Mapping Section](https://angular2-tree.readme.io/docs/action-mapping) for more details.
