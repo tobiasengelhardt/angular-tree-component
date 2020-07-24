@@ -1,3 +1,129 @@
+<a name="10.0.0-beta.0"></a>
+# 10.0.0-beta.0 (2020-07-22)
+
+### Features
+
+* Update to Angular 10
+
+### BREAKING CHANGES
+
+BEFORE:
+
+No minimum Angular version set
+
+AFTER:
+
+Angular v10 minimum dependencies
+
+<a name="9.0.3"></a>
+# 9.0.3 (2020-07-20)
+
+### Build
+
+* add license to library package.json ([#843](https://github.com/CirclonGroup/angular-tree-component/issues/843)) ([23476c8](https://github.com/CirclonGroup/angular-tree-component/commit/23476c8)), closes ([#843](https://github.com/CirclonGroup/angular-tree-component/issues/843))
+
+<a name="9.0.2"></a>
+# 9.0.2 (2020-07-15)
+
+### Bug Fixes
+
+* include mobx as dependency ([a96f2bc](https://github.com/CirclonGroup/angular-tree-component/commit/a96f2bc))
+
+<a name="9.0.1"></a>
+# 9.0.1 (2020-07-15)
+
+### BREAKING CHANGES
+
+* move to new npm package scope
+
+BEFORE:
+
+package.json:
+
+```
+"dependencies": {
+    ...
+    "angular-tree-component": "^8.5.6",
+    ...
+}
+```
+
+AFTER:
+
+package.json
+
+```
+"dependencies": {
+    ...
+    "@circlon/angular-tree-component": "^9.0.1",
+    ...
+}
+```
+
+* move css file to css folder instead of dist
+
+BEFORE:
+
+Import angular tree css:
+
+```
+@import '~angular-tree-component/dist/angular-tree-component.css';
+```
+
+AFTER:
+
+package.json
+
+```
+@import '~@circlon/angular-tree-component/css/angular-tree-component.css';
+```
+
+<a name="9.0.0"></a>
+# 9.0.0 (2020-07-10)
+
+### Bug Fixes
+
+* Use correct ITreeOptions input in TreeComponent instead of TreeOptions ([#795](https://github.com/CirclonGroup/angular-tree-component/issues/795)) ([62f0c02](https://github.com/CirclonGroup/angular-tree-component/commit/62f0c02)), closes ([#795](https://github.com/CirclonGroup/angular-tree-component/issues/795))
+
+### Features
+
+* Update to Angular 9 ([37feac56](https://github.com/CirclonGroup/angular-tree-component/commit/37feac56))
+
+### Code Refactoring
+
+* use on example app and move app to projects ([5ded257](https://github.com/CirclonGroup/angular-tree-component/commit/5ded257))
+* move library to projects and use ng-packagr for build ([a04ea64](https://github.com/CirclonGroup/angular-tree-component/commit/a04ea64))
+
+### BREAKING CHANGES
+
+* Provide TreeDraggedElement in root ([50dee1b](https://github.com/CirclonGroup/angular-tree-component/commit/50dee1b))
+
+BEFORE:
+
+Import TreeModule with `TreeModule.forRoot()` in base module.
+
+```
+@NgModule({
+  imports: [
+    TreeModule.forRoot()
+  ]
+})
+export class MyModule {}
+```
+
+AFTER:
+
+Import TreeModule with `TreeModule` in all modules.
+
+```
+@NgModule({
+  imports: [
+    TreeModule
+  ]
+})
+export class MyModule {}
+```
+
 <a name="8.5.6"></a>
 # 8.5.6 (2020-14-02)
 * Fixed mobxAutorun to treeMobxAutorun

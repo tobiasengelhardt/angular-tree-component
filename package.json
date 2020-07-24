@@ -1,14 +1,10 @@
 {
   "name": "tengelhardt-angular-tree-component",
-  "version": "9.0.0",
+  "version": "10.0.0-beta.0",
   "description": "A simple yet powerful tree component for Angular2",
-  "author": "Adam Klein <adam@500tech.com>",
-  "homepage": "https://github.com/500tech/angular-tree-component",
+  "author": "Circlon Group <os-group@circlon.de>",
+  "homepage": "https://github.com/CirclonGroup/angular-tree-component",
   "license": "MIT",
-  "main": "dist/angular-tree-component.umd.js",
-  "js:next": "dist/angular-tree-component.js",
-  "module": "dist/angular-tree-component.js",
-  "types": "dist/angular-tree-component.d.ts",
   "keywords": [
     "ng",
     "angular",
@@ -34,92 +30,89 @@
     "angular2 tree component"
   ],
   "scripts": {
+    "lint:lib": "ng lint angular-tree-component",
+    "build:lib": "npm run lint:lib && npm run clean:dist && ng build angular-tree-component",
+    "build": "npm run build:lib",
+    "clean:dist": "rimraf dist",
+    "copy:files": "cp ./README.md ./dist/angular-tree-component && cp ./LICENSE ./dist/angular-tree-component && cp ./projects/angular-tree-component/src/lib/angular-tree-component.css ./dist/angular-tree-component/css/",
+    "copy:files:win": "copy README.md .\\dist\\angular-tree-component && copy LICENSE .\\dist\\angular-tree-component && xcopy .\\projects\\angular-tree-component\\src\\lib\\angular-tree-component.css .\\dist\\angular-tree-component\\css\\",
     "doc": "typedoc --module commonjs --out doc lib/defs/api.ts",
-    "clean": "npm run clean:typescript && rimraf node_modules && npm cache clean",
-    "clean:typescript": "rimraf dist",
+    "clean:all": "npm run clean:dist && rimraf node_modules && npm cache clean",
     "lint": "tslint lib/**/*.ts",
-    "rollup": "./node_modules/.bin/rollup -c rollup.config.js dist/angular-tree-component.js -o dist/angular-tree-component.umd.js",
-    "build": "npm run lint && npm run clean:typescript && .\\node_modules\\.bin\\ngc && npm run rollup && copy lib\\angular-tree-component.css dist",
-    "example:cli": "./node_modules/.bin/ngc && cp lib/angular-tree-component.css dist && cd example/cli && npm install && cp -rf ../../dist node_modules/angular-tree-component/ && ./node_modules/.bin/ng serve",
-    "example:cli:win": ".\\node_modules\\.bin\\ngc && cd example\\cli9 && npm install && npm install ..\\..\\ && .\\node_modules\\.bin\\ng serve",
-    "selupdate": "webdriver-manager update",
-    "selenium": "webdriver-manager update && webdriver-manager start",
+    "prepublish:lib:win": "npm run build:lib && npm run copy:files:win",
+    "start:example-app": "ng serve",
+    "start:example-app:es5": "ng serve --configuration=es5",
     "example:cli:build": "npm run build && cd example/cli && npm install && cp -rf ../../dist node_modules/angular-tree-component/ && cp src/index.build.html src/index.html && ./node_modules/.bin/ng build --aot && cp src/index.dev.html src/index.html && mkdir -p 500tech/angular-tree-component/master/example/cli/ && cp -rf dist 500tech/angular-tree-component/master/example/cli/",
-    "test": "./node_modules/.bin/testcafe \"saucelabs:Chrome:Windows 10\" e2e/*.testcafe.js --app \"cd example/cli && node_modules/.bin/ng serve >/dev/null 2>&1\" -r xunit:/tmp/test-results/res.xml -c 4 --assertion-timeout 10000 --app-init-delay 20000 --page-load-timeout 10000 --selector-timeout 20000",
-    "test:ci:local": "./node_modules/.bin/testcafe chrome:headless e2e/*.testcafe.js --app \"cd example/cli && node_modules/.bin/ng serve >/dev/null 2>&1\" -r xunit:/tmp/test-results/res.xml -c 4 --assertion-timeout 10000 --app-init-delay 20000 --page-load-timeout 10000 --selector-timeout 20000",
-    "test:dev": "./node_modules/.bin/testcafe chrome:headless e2e/*.testcafe.js",
-    "test:debug": "./node_modules/.bin/testcafe chrome e2e/*.testcafe.js --inspect-brk",
-    "test:slow": "./node_modules/.bin/testcafe chrome e2e/*.testcafe.js --speed 0.1",
-    "test:setup": "npm run build && cd example/cli && npm install && cp -rf ../../dist node_modules/angular-tree-component/",
-    "prepublishOnly": "cd example/cli && npm install && cd ../../ && npm run build",
-    "e2e:tsc": "../node_modules/.bin/tsc --p e2e/tsconfig.json"
+    "test:ci:local": "testcafe chrome:headless e2e/*.testcafe.js --app \"ng serve\" -r xunit:./xunit/res.xml -c 4 --assertion-timeout 10000 --app-init-delay 20000 --page-load-timeout 10000 --selector-timeout 20000",
+    "test:dev": "testcafe chrome:headless e2e/*.testcafe.js",
+    "test:debug": "testcafe chrome e2e/*.testcafe.js --inspect-brk",
+    "test:slow": "testcafe chrome e2e/*.testcafe.js --speed 0.1",
+    "e2e:tsc": "../node_modules/.bin/tsc --p e2e/tsconfig.json",
+    "publish:release": "npm publish ./dist/angular-tree-component",
+    "publish:next": "npm publish ./dist/angular-tree-component --tag next"
   },
   "files": [
     "dist/"
   ],
-  "readme": "https://github.com/500tech/angular-tree-component/blob/master/README.md",
+  "readme": "https://github.com/CirclonGroup/angular-tree-component/blob/master/README.md",
   "contributors": [
     "Adam Klein <adam@500tech.com>"
   ],
-  "peerDependencies": {
-    "core-js": "^2.4.1"
-  },
   "dependencies": {
-    "lodash": "^4.17.11",
-    "mobx": "^4.15.1"
+    "lodash-es": "^4.17.15",
+    "mobx": "~4.14.1"
   },
   "devDependencies": {
-    "@angular-devkit/core": "^9.1.1",
-    "@angular/cli": "^9.1.1",
-    "@angular/common": "^9.1.1",
-    "@angular/compiler": "^9.1.1",
-    "@angular/compiler-cli": "^9.1.1",
-    "@angular/core": "^9.1.1",
-    "@angular/platform-browser": "^9.1.1",
-    "@angular/platform-browser-dynamic": "^9.1.1",
-    "@angular/platform-server": "^9.1.1",
+    "@angular-devkit/build-angular": "^0.1000.3",
+    "@angular-devkit/build-ng-packagr": "~0.1000.3",
+    "@angular/animations": "^10.0.3",
+    "@angular/cli": "^10.0.3",
+    "@angular/common": "^10.0.4",
+    "@angular/compiler": "^10.0.4",
+    "@angular/compiler-cli": "^10.0.4",
+    "@angular/core": "^10.0.4",
+    "@angular/forms": "^10.0.4",
+    "@angular/platform-browser": "^10.0.4",
+    "@angular/platform-browser-dynamic": "^10.0.4",
+    "@angular/platform-server": "^10.0.4",
+    "@angular/router": "^10.0.4",
     "@types/jasmine": "2.5.38",
-    "@types/lodash": "^4.14.62",
-    "@types/node": "^6.0.38",
+    "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.7",
     "@types/rx": "2.5.34",
     "@types/webpack": "^1.12.29",
-    "codelyzer": "2.0.0-beta.4",
-    "concurrently": "3.4.0",
-    "core-js": "^2.4.1",
-    "growl": "~> 1.10.0",
-    "hoek": "~> 5.0.3",
+    "codelyzer": "^6.0.0",
     "html-dnd": "1.2.0",
     "http-server": "0.9.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.7",
+    "ng-packagr": "^10.0.0",
     "nightwatch": "0.9.12",
     "prettier": "^1.19.1",
-    "protractor": "5.1.1",
-    "protractor-jasmine2-html-reporter": "0.0.7",
+    "jasmine-core": "~3.5.0",
+    "jasmine-spec-reporter": "~5.0.0",
+    "karma": "~5.0.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage-istanbul-reporter": "~3.0.2",
+    "karma-jasmine": "~3.3.0",
+    "karma-jasmine-html-reporter": "^1.5.0",
     "rimraf": "^2.5.1",
-    "rollup": "^0.41.4",
-    "rollup-plugin-auto-external": "^2.0.0",
-    "rollup-plugin-commonjs": "7.0.2",
-    "rollup-plugin-node-resolve": "2.0.0",
-    "rollup-plugin-uglify": "1.0.1",
-    "rxjs": "^6.5.5",
-    "testcafe": "^1.0.1",
-    "testcafe-browser-provider-saucelabs": "^1.6.1",
-    "tslint": "4.4.2",
+    "rxjs": "^6.5.3",
+    "testcafe": "^1.8.8",
+    "tsickle": "^0.38.1",
+    "tslib": "^2.0.0",
+    "tslint": "~6.1.0",
     "typedoc": "^0.3.12",
-    "typescript": "~3.8.3",
-    "zone.js": "^0.10.3"
+    "typescript": "~3.9.7",
+    "uuid": "^8.2.0",
+    "zone.js": "^0.10.2"
   },
-  "repository": "https://github.com/tobiasengelhardt/angular-tree-component.git",
+  "repository": "https://github.com/CirclonGroup/angular-tree-component.git",
   "bugs": {
-    "url": "https://github.com/500tech/angular-tree-component/issues"
+    "url": "https://github.com/CirclonGroup/angular-tree-component/issues"
   },
   "engines": {
-    "node": ">=10.0.0"
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/angular-tree-component"
+    "node": ">=10.21.0"
   },
   "prettier": {
     "printWidth": 80,
@@ -143,9 +136,7 @@
   "husky": {
     "hooks": {
       "post-commit": "git reset",
-      "pre-commit": [
-        "lint-staged"
-      ]
+      "pre-commit": "lint-staged"
     }
   }
 }
